@@ -18,8 +18,8 @@ abstract class Classifier {
   late TensorImage _inputImage;
   late TensorBuffer _outputBuffer;
 
-  late TfLiteType _inputType;
-  late TfLiteType _outputType;
+  late TensorType _inputType;
+  late TensorType _outputType;
 
   final String _labelsFileName = 'assets/labels.txt';
 

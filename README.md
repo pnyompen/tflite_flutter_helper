@@ -56,7 +56,7 @@ Sample app: [Audio Classification](https://github.com/am15h/tflite_flutter_helpe
 // Create a container for the result and specify that this is a quantized model.
 // Hence, the 'DataType' is defined as UINT8 (8-bit unsigned integer)
 TensorBuffer probabilityBuffer =
-    TensorBuffer.createFixedSize(<int>[1, 1001], TfLiteType.uint8);
+    TensorBuffer.createFixedSize(<int>[1, 1001], TensorType.uint8);
 ```
 
 #### Loading the model and running inference:
