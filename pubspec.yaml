@@ -1,10 +1,10 @@
 name: tflite_flutter_helper
 description: Easy, fast processing and manipulation input and output of TensorFlow Lite Models.
-version: 0.3.0
+version: 0.3.1
 homepage: https://www.github.com/am15h/tflite_flutter_helper
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.17.0 <4.0.0"
   flutter: ">=1.10.0"
 
 dependencies:
@@ -13,7 +13,7 @@ dependencies:
   meta: ^1.1.8
   quiver: ^3.0.1
   path_provider: ^2.0.1
-  tflite_flutter: ^0.10.2
+  tflite_flutter: ^0.11.0
   tuple: ^2.0.0
   camera: ^0.10.5
   ffi: ^2.0.1
