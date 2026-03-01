@@ -63,7 +63,7 @@ class BoundingBoxUtils {
     List<int> shape = tensor.getShape();
     SupportPreconditions.checkArgument(
       boundingBoxAxis >= -shape.length && boundingBoxAxis < shape.length,
-      errorMessage:
+      message:
           "Axis $boundingBoxAxis is not in range (-(D+1), D), where D is the number of dimensions of input" +
               " tensor (shape=$shape)",
     );
@@ -73,17 +73,17 @@ class BoundingBoxUtils {
     }
     SupportPreconditions.checkArgument(
       shape[boundingBoxAxis] == 4,
-      errorMessage:
+      message:
           "Size of bounding box dimBouBoxension $boundingBoxAxis is not 4. Got ${shape[boundingBoxAxis]} in shape $shape",
     );
     SupportPreconditions.checkArgument(
       valueIndex.length == 4,
-      errorMessage:
+      message:
           "Bounding box index list length ${valueIndex.length} is not 4. Got index list $valueIndex",
     );
     SupportPreconditions.checkArgument(
         tensor.getDataType() == TensorType.float32,
-        errorMessage:
+        message:
             "Bounding Boxes only create from FLOAT32 buffers. Got: ${tensor.getDataType()}");
 
     // From Android Library

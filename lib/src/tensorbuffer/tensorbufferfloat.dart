@@ -59,7 +59,7 @@ class TensorBufferFloat extends TensorBuffer {
         message: "The array to be loaded cannot be null.");
     SupportPreconditions.checkArgument(
         src.length == TensorBuffer.computeFlatSize(shape),
-        errorMessage:
+        message:
             "The size of the array to be loaded does not match the specified shape.");
     resize(shape);
 

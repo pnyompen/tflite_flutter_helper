@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:tflite_flutter_helper/src/image/image_operator.dart';
 import 'package:tflite_flutter_helper/src/image/ops/resize_op.dart';
 import 'package:tflite_flutter_helper/src/image/tensor_image.dart';
-import 'package:tuple/tuple.dart';
 
 /// As a computation unit for processing images, it could resize image to predefined size.
 ///
@@ -60,12 +59,11 @@ class ResizeWithCropOrPadOp implements ImageOperator {
       // cropping
       dstL = 0;
       dstR = _targetWidth;
-      // custom crop position. First item of the tuple represent the desired position for left position
-      // and the second item the right position
-      Tuple2<int, int> cropPos =
+      // custom crop position
+      (int, int) cropPos =
           _computeCropPosition(_targetWidth, w, cropWidthCustomPosition);
-      srcL = cropPos.item1;
-      srcR = cropPos.item2;
+      srcL = cropPos.$1;
+      srcR = cropPos.$2;
     }
     if (_targetHeight > h) {
       // padding
@@ -77,12 +75,11 @@ class ResizeWithCropOrPadOp implements ImageOperator {
       // cropping
       dstT = 0;
       dstB = _targetHeight;
-      // custom crop position. First item of the tuple represent the desired position for top position
-      // and the second item the bottom position
-      Tuple2<int, int> cropPos =
+      // custom crop position
+      (int, int) cropPos =
           _computeCropPosition(_targetHeight, h, cropHeightCustomPosition);
-      srcT = cropPos.item1;
-      srcB = cropPos.item2;
+      srcT = cropPos.$1;
+      srcB = cropPos.$2;
     }
 
     Image resized = _drawImage(_output, image.image,
@@ -100,7 +97,7 @@ class ResizeWithCropOrPadOp implements ImageOperator {
     return image;
   }
 
-  Tuple2<int, int> _computeCropPosition(int targetSize, int imageSize,
+  (int, int) _computeCropPosition(int targetSize, int imageSize,
       [int? cropPosition]) {
     int srcLT;
     int srcRB;
@@ -112,7 +109,7 @@ class ResizeWithCropOrPadOp implements ImageOperator {
     }
     srcRB = srcLT + targetSize;
 
-    return Tuple2<int, int>(srcLT, srcRB);
+    return (srcLT, srcRB);
   }
 
   // This function is used to check the crop custom crop position is valid

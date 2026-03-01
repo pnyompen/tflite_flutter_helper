@@ -3,17 +3,17 @@ class SupportPreconditions {
     return reference;
   }
 
-  static String checkNotEmpty(String string, {Object? errorMessage}) {
+  static String checkNotEmpty(String string, {Object? message}) {
     if (string.length == 0) {
       throw ArgumentError(
-          _resolveMessage(errorMessage, "Given String is empty or null."));
+          _resolveMessage(message, "Given String is empty or null."));
     }
     return string;
   }
 
-  static void checkArgument(bool expression, {Object? errorMessage}) {
+  static void checkArgument(bool expression, {Object? message}) {
     if (!expression) {
-      throw ArgumentError(_resolveMessage(errorMessage, ''));
+      throw ArgumentError(_resolveMessage(message, ''));
     }
   }
 
@@ -25,9 +25,9 @@ class SupportPreconditions {
     return index;
   }
 
-  static void checkState(bool expression, {String? errorMessage}) {
+  static void checkState(bool expression, {String? message}) {
     if (!expression) {
-      throw new StateError(_resolveMessage(expression, 'failed precondition'));
+      throw new StateError(_resolveMessage(message, 'failed precondition'));
     }
   }
 

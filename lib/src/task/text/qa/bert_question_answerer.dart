@@ -1,8 +1,8 @@
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:quiver/check.dart';
 import 'package:tflite_flutter_helper/src/common/file_util.dart';
+import 'package:tflite_flutter_helper/src/common/support_preconditions.dart';
 import 'package:tflite_flutter_helper/src/task/bindings/text/qa/bert_qa.dart';
 import 'package:tflite_flutter_helper/src/task/bindings/text/qa/types.dart';
 
@@ -95,7 +95,7 @@ class BertQuestionAnswerer implements QuestionAnswerer {
 
   /// Deletes BertQuestionAnswerer native instance.
   void delete() {
-    checkState(!_deleted, message: 'NLCLassifier already deleted.');
+    SupportPreconditions.checkState(!_deleted, message: 'NLCLassifier already deleted.');
     BertQuestionAnswererDelete(base);
     _deleted = true;
   }

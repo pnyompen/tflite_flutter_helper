@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:quiver/check.dart';
+import 'package:tflite_flutter_helper/src/common/support_preconditions.dart';
 import 'package:tflite_flutter_helper/src/task/bindings/text/nl_classifier/types.dart';
 
 /// Options to configure BertNLClassifier.
@@ -28,7 +28,7 @@ class BertNLClassifierOptions {
 
   /// Destroys the options instance.
   void delete() {
-    checkState(!_deleted, message: 'BertNLClassifierOptions already deleted.');
+    SupportPreconditions.checkState(!_deleted, message: 'BertNLClassifierOptions already deleted.');
     calloc.free(_options);
     _deleted = true;
   }

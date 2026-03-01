@@ -21,7 +21,7 @@ class CastOp implements TensorOperator {
     SupportPreconditions.checkArgument(
         destinationType == TensorType.uint8 ||
             destinationType == TensorType.float32,
-        errorMessage: "Destination Type " +
+        message: "Destination Type " +
             destinationType.toString() +
             " is not supported");
     _destinationType = destinationType;

@@ -1,5 +1,3 @@
-import 'package:quiver/core.dart';
-
 /// Category is a util class, contains a label and a float value. Typically it's used as result of
 /// classification tasks.
 class Category {
@@ -25,7 +23,7 @@ class Category {
 
   @override
   int get hashCode {
-    return hash2(_label, _score);
+    return Object.hash(_label, _score);
   }
 
   @override

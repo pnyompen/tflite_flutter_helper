@@ -1,8 +1,8 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
-import 'package:quiver/check.dart';
 import 'package:tflite_flutter_helper/src/common/file_util.dart';
+import 'package:tflite_flutter_helper/src/common/support_preconditions.dart';
 import 'package:tflite_flutter_helper/src/label/category.dart';
 import 'package:tflite_flutter_helper/src/task/bindings/text/nl_classifier/bert_nl_classifier.dart';
 import 'package:tflite_flutter_helper/src/task/bindings/text/nl_classifier/types.dart';
@@ -87,7 +87,7 @@ class BertNLClassifier {
 
   /// Deletes BertNLClassifier Instance.
   void delete() {
-    checkState(!_deleted, message: 'BertNLClassifier already deleted.');
+    SupportPreconditions.checkState(!_deleted, message: 'BertNLClassifier already deleted.');
     BertNLClassifierDelete(base);
     _deleted = true;
   }

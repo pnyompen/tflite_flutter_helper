@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:image/image.dart';
-import 'package:quiver/check.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:tflite_flutter_helper/src/common/support_preconditions.dart';
 import 'package:tflite_flutter_helper/src/image/color_space_type.dart';
 import 'package:tflite_flutter_helper/src/image/base_image_container.dart';
 import 'package:tflite_flutter_helper/src/tensorbuffer/tensorbuffer.dart';
@@ -22,7 +22,7 @@ class TensorBufferContainer implements BaseImageContainer {
   ///     specified color space type, or if the color space type is not supported
   static TensorBufferContainer create(
       TensorBuffer buffer, ColorSpaceType colorSpaceType) {
-    checkArgument(
+    SupportPreconditions.checkArgument(
         colorSpaceType == ColorSpaceType.RGB ||
             colorSpaceType == ColorSpaceType.GRAYSCALE,
         message:
@@ -38,7 +38,7 @@ class TensorBufferContainer implements BaseImageContainer {
 
   TensorBufferContainer._(TensorBuffer buffer, ColorSpaceType colorSpaceType,
       int height, int width) {
-    checkArgument(colorSpaceType != ColorSpaceType.YUV_420_888,
+    SupportPreconditions.checkArgument(colorSpaceType != ColorSpaceType.YUV_420_888,
         message:
             "The actual encoding format of YUV420 is required. Choose a ColorSpaceType from: NV12," +
                 " NV21, YV12, YV21. Use YUV_420_888 only when loading an android.media.Image.");

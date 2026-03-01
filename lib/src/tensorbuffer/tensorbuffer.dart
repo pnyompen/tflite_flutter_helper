@@ -185,12 +185,12 @@ abstract class TensorBuffer {
 
     SupportPreconditions.checkArgument(
         (ByteData.view(buffer).lengthInBytes == getTypeSize() * flatSize),
-        errorMessage:
+        message:
             "The size of byte buffer and the shape do not match. buffer: ${ByteData.view(buffer).lengthInBytes} shape: ${getTypeSize() * flatSize}");
 
     if (!_isDynamic) {
       SupportPreconditions.checkArgument(flatSize == this.flatSize,
-          errorMessage:
+          message:
               "The size of byte buffer and the size of the tensor buffer do not match.");
     } else {
       this.flatSize = flatSize;
@@ -218,7 +218,7 @@ abstract class TensorBuffer {
     SupportPreconditions.checkNotNull(shape,
         message: 'TensorBuffer shape cannot be null.');
     SupportPreconditions.checkArgument(_isShapeValid(shape),
-        errorMessage: 'TensorBuffer shape cannot be null.');
+        message: 'TensorBuffer shape cannot be null.');
 
     int newFlatSize = computeFlatSize(shape);
     this.shape = List<int>.from(shape);

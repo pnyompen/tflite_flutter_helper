@@ -1,8 +1,8 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
-import 'package:quiver/check.dart';
 import 'package:tflite_flutter_helper/src/common/file_util.dart';
+import 'package:tflite_flutter_helper/src/common/support_preconditions.dart';
 import 'package:tflite_flutter_helper/src/label/category.dart';
 import 'package:tflite_flutter_helper/src/task/bindings/text/nl_classifier/nl_classifer.dart';
 import 'package:tflite_flutter_helper/src/task/bindings/text/nl_classifier/types.dart';
@@ -104,7 +104,7 @@ class NLClassifier {
 
   /// Deletes NLClassifier Instance.
   void delete() {
-    checkState(!_deleted, message: 'NLCLassifier already deleted.');
+    SupportPreconditions.checkState(!_deleted, message: 'NLCLassifier already deleted.');
     NLClassifierDelete(base);
     _deleted = true;
   }

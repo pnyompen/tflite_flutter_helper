@@ -56,11 +56,11 @@ class TensorLabel {
 
     axisLabels.forEach((axis, labels) {
       SupportPreconditions.checkArgument(axis >= 0 && axis < _shape.length,
-          errorMessage: "Invalid axis id: $axis");
+          message: "Invalid axis id: $axis");
       SupportPreconditions.checkNotNull(labels,
           message: "Label list is null on axis: $axis");
       SupportPreconditions.checkArgument(_shape[axis] == labels.length,
-          errorMessage: "Label number " +
+          message: "Label number " +
               "${labels.length} mismatch the shape on axis $axis");
     });
   }
@@ -89,7 +89,7 @@ class TensorLabel {
 
     Map<String, TensorBuffer> labelToTensorMap = {};
     SupportPreconditions.checkArgument(_axisLabels.containsKey(labeledAxis),
-        errorMessage:
+        message:
             "get a <String, TensorBuffer> map requires the labels are set on the first non-1 axis.");
     List<String> labels = _axisLabels[labeledAxis]!;
 
@@ -125,7 +125,7 @@ class TensorLabel {
   Map<String, double> getMapWithFloatValue() {
     int labeledAxis = getFirstAxisWithSizeGreaterThanOne(_tensorBuffer);
     SupportPreconditions.checkState(labeledAxis == _shape.length - 1,
-        errorMessage:
+        message:
             "get a <String, Scalar> map is only valid when the only labeled axis is the last one.");
     List<String> labels = _axisLabels[labeledAxis]!;
     List<double> data = _tensorBuffer.getDoubleList();
@@ -151,7 +151,7 @@ class TensorLabel {
   List<Category> getCategoryList() {
     int labeledAxis = getFirstAxisWithSizeGreaterThanOne(_tensorBuffer);
     SupportPreconditions.checkState(labeledAxis == _shape.length - 1,
-        errorMessage:
+        message:
             "get a Category list is only valid when the only labeled axis is the last one.");
     List<String> labels = _axisLabels[labeledAxis]!;
     List<double> data = _tensorBuffer.getDoubleList();

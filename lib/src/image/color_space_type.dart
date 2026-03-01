@@ -1,5 +1,5 @@
 import 'package:image/image.dart';
-import 'package:quiver/check.dart';
+import 'package:tflite_flutter_helper/src/common/support_preconditions.dart';
 import 'package:tflite_flutter_helper/src/image/image_conversions.dart';
 import 'package:tflite_flutter_helper/src/tensorbuffer/tensorbuffer.dart';
 
@@ -38,7 +38,7 @@ abstract class ColorSpaceType {
     assertRgbOrGrayScale("assertShape()");
 
     List<int> normalizedShape = getNormalizedShape(shape);
-    checkArgument(isValidNormalizedShape(normalizedShape),
+    SupportPreconditions.checkArgument(isValidNormalizedShape(normalizedShape),
         message: getShapeInfoMessage() + "The provided image shape is $shape");
   }
 
@@ -49,7 +49,7 @@ abstract class ColorSpaceType {
   ///
   /// @throws ArgumentError if {@code shape} does not match the color space type
   void assertNumElements(int numElements, int height, int width) {
-    checkArgument(numElements >= getNumElements(height, width),
+    SupportPreconditions.checkArgument(numElements >= getNumElements(height, width),
         message:
             "The given number of elements $numElements does not match the image ${this.toString()} in $height x $width. The" +
                 " expected number of elements should be at least ${getNumElements(height, width)}.");

@@ -16,7 +16,7 @@ rootProject.allprojects {
 
 android {
     namespace "com.tfliteflutter.tflite_flutter_helper"
-    compileSdkVersion 33
+    compileSdk 35
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'

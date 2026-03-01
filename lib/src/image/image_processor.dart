@@ -84,7 +84,7 @@ class ImageProcessor extends SequentialProcessor<TensorImage> {
   void updateNumberOfRotations(int k, int occurrence) {
     SupportPreconditions.checkState(
         operatorIndex.containsKey(Rot90Op().runtimeType.toString()),
-        errorMessage: "The Rot90Op has not been added to the ImageProcessor.");
+        message: "The Rot90Op has not been added to the ImageProcessor.");
 
     List<int> indexes = operatorIndex[Rot90Op().runtimeType.toString()]!;
     SupportPreconditions.checkElementIndex(occurrence, indexes.length,

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:quiver/check.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
@@ -24,7 +23,7 @@ class TensorAudio {
 
   void loadDoubleListOffset(
       List<double> src, int offsetInFloat, int sizeInFloat) {
-    checkArgument(
+    SupportPreconditions.checkArgument(
       sizeInFloat % format.channelCount == 0,
       message:
           "Size ($sizeInFloat) needs to be a multiplier of the number of channels (${format.channelCount})",
@@ -55,7 +54,7 @@ class TensorAudio {
   }
 
   void loadListOffset(List<int> src, int offsetInShort, int sizeInShort) {
-    checkArgument(offsetInShort + sizeInShort <= src.length,
+    SupportPreconditions.checkArgument(offsetInShort + sizeInShort <= src.length,
         message:
             "Index out of range. offset ($offsetInShort) + size ($sizeInShort) should <= newData.length (${src.length})");
     List<double> floatData = List.filled(sizeInShort, 0.0);
@@ -96,9 +95,9 @@ class TensorAudioFormat {
   TensorAudioFormat._(this._channelCount, this._sampleRate);
 
   static TensorAudioFormat create(int channelCount, int sampleRate) {
-    checkArgument(channelCount > 0,
+    SupportPreconditions.checkArgument(channelCount > 0,
         message: "Number of channels should be greater than 0");
-    checkArgument(sampleRate > 0,
+    SupportPreconditions.checkArgument(sampleRate > 0,
         message: "Sample rate should be greater than 0");
     return TensorAudioFormat._(channelCount, sampleRate);
   }
@@ -126,7 +125,7 @@ class FloatRingBuffer {
   /// Loads a slice of the float array to the ring buffer. If the float array is longer than ring
   /// buffer's capacity, samples with lower indicies in the array will be ignored.
   void loadOffset(List<double> newData, int offset, int size) {
-    checkArgument(
+    SupportPreconditions.checkArgument(
       offset + size <= newData.length,
       message:
           "Index out of range. offset ($offset) + size ($size) should <= newData.length (${newData.length})",

@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:image/image.dart';
-import 'package:quiver/check.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:tflite_flutter_helper/src/common/support_preconditions.dart';
 import 'package:tflite_flutter_helper/src/image/base_image_container.dart';
 import 'package:tflite_flutter_helper/src/image/color_space_type.dart';
 import 'package:tflite_flutter_helper/src/image/image_container.dart';
@@ -88,7 +88,7 @@ class TensorImage {
   }
 
   void load(TensorBuffer buffer, ColorSpaceType colorSpaceType) {
-    checkArgument(
+    SupportPreconditions.checkArgument(
         colorSpaceType == ColorSpaceType.RGB ||
             colorSpaceType == ColorSpaceType.GRAYSCALE,
         message:

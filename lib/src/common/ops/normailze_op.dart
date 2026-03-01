@@ -41,7 +41,7 @@ class NormalizeOp implements TensorOperator {
     }
 
     SupportPreconditions.checkArgument(stddev != 0.0,
-        errorMessage: "Stddev cannot be zero.");
+        message: "Stddev cannot be zero.");
     bool meansIsZeroAndDevsIs1 = false;
     if (mean == 0.0 && stddev == 1.0) {
       meansIsZeroAndDevsIs1 = true;
@@ -80,10 +80,10 @@ class NormalizeOp implements TensorOperator {
     SupportPreconditions.checkNotNull(mean, message: "Mean cannot be null");
     SupportPreconditions.checkNotNull(stddev, message: "Stddev cannot be null");
     SupportPreconditions.checkArgument(mean.length == stddev.length,
-        errorMessage:
+        message:
             "Per channel normalization requires same number of means and stddevs");
     SupportPreconditions.checkArgument(mean.length > 0,
-        errorMessage: "Means and stddevs are empty.");
+        message: "Means and stddevs are empty.");
     this.mean = mean.toList();
     this.stddev = stddev.toList();
 
@@ -91,7 +91,7 @@ class NormalizeOp implements TensorOperator {
     this.numChannels = mean.length;
     for (int i = 0; i < numChannels; i++) {
       SupportPreconditions.checkArgument(this.stddev[i] != 0,
-          errorMessage: "Stddev cannot be zero.");
+          message: "Stddev cannot be zero.");
       if (this.stddev[i] != 1 || this.mean[i] != 0) {
         allMeansAreZeroAndAllDevsAre1 = false;
       }
@@ -113,7 +113,7 @@ class NormalizeOp implements TensorOperator {
     SupportPreconditions.checkArgument(
         numChannels == 1 ||
             (shape.length != 0 && shape[shape.length - 1] == numChannels),
-        errorMessage:
+        message:
             "Number of means (stddevs) is not same with number of channels (size of last axis).");
 
     int flatSize = input.getFlatSize();
