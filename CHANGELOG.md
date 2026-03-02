@@ -7,6 +7,7 @@
 * Android: compileSdk 35, Gradle 8.10.2.
 * iOS minimum deployment target 12.0, macOS minimum 10.15.
 * Add `final` modifier to FFI struct/opaque classes for Dart 3 compatibility.
+* Android: AGP 8.7.3, Kotlin 2.1.0.
 * CI: update GitHub Actions to latest versions (checkout@v4, setup-java@v4, flutter-action@v2).
 
 # [0.3.0] - Audio Support and Task Library
